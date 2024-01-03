@@ -1,8 +1,10 @@
 <template>
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark px-3">
+  <nav class="navbar navbar-expand-sm navbar-dark nav-color px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <img alt="logo" src="../assets/img/cw-logo.png" height="45" />
+        <i class="mdi mdi-arrow-down fs-1 photo-title "><span class="plan-title fs-1 p-0 text-white"
+            title="back to homepage">Inspire
+          </span></i>
       </div>
     </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -60,6 +62,14 @@ a:hover {
 
 .nav-link {
   text-transform: uppercase;
+}
+
+.nav-color {
+  background-color: #BFC9CA;
+}
+
+.photo-title {
+  font-family: 'Pinyon Script', cursive;
 }
 
 .navbar-nav .router-link-exact-active {
