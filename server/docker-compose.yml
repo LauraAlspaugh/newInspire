@@ -1,0 +1,9 @@
+version: '3'
+services:
+  app:
+    image: your-dockerhub-username/newInspire:latest
+    restart: unless-stopped
+    env_file:
+      - newInspire-env
+    ports:
+      - "7045:80"
