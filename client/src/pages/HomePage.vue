@@ -4,6 +4,7 @@
       <div class="col-12">
 
         <img class="img-fluid" :src="images.imgUrl" alt="image url">
+        <p class="author-title fs-4 text-light"> Image by: {{ images.author }}</p>
       </div>
     </section>
   </div>
@@ -37,4 +38,19 @@ export default {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+img {
+  position: relative;
+  object-fit: cover;
+  position: center;
+  width: 220dvh;
+  height: 90dvh;
+}
+
+.author-title {
+  position: absolute;
+  top: 90px;
+  left: 60px;
+
+}
+</style>
