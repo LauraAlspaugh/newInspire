@@ -1,4 +1,3 @@
-
 {
   "folders": [
     {
@@ -8,7 +7,11 @@
     {
       "path": "server",
       "name": "server"
-    },{"path":".github/workflows", "name":"workflows"}
+    },
+    {
+      "path": ".github/workflows",
+      "name": "workflows"
+    }
   ],
   "settings": {
     "editor.suggestSelection": "first",
@@ -33,7 +36,27 @@
     "eslint.lintTask.enable": true,
     "eslint.codeActionsOnSave.mode": "all",
     "editor.codeActionsOnSave": {
-      "source.fixAll": true
-    }
+      "source.fixAll": "explicit"
+    },
+    "workbench.colorCustomizations": {
+      "activityBar.activeBackground": "#da898a",
+      "activityBar.background": "#da898a",
+      "activityBar.foreground": "#15202b",
+      "activityBar.inactiveForeground": "#15202b99",
+      "activityBarBadge.background": "#277926",
+      "activityBarBadge.foreground": "#e7e7e7",
+      "commandCenter.border": "#15202b99",
+      "sash.hoverBorder": "#da898a",
+      "statusBar.background": "#ce6263",
+      "statusBar.foreground": "#15202b",
+      "statusBarItem.hoverBackground": "#c13c3d",
+      "statusBarItem.remoteBackground": "#ce6263",
+      "statusBarItem.remoteForeground": "#15202b",
+      "titleBar.activeBackground": "#ce6263",
+      "titleBar.activeForeground": "#15202b",
+      "titleBar.inactiveBackground": "#ce626399",
+      "titleBar.inactiveForeground": "#15202b99"
+    },
+    "peacock.color": "#ce6263"
   }
 }
