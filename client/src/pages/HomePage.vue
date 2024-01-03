@@ -1,12 +1,20 @@
 <template>
-  Inspire
+  <div class="container-fluid">
+    <section class="row">
+      <div class="col-12">
+
+        <img class="img-fluid" :src="images.imgUrl" alt="image url">
+      </div>
+    </section>
+  </div>
 </template>
 
 <script>
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { imagesService } from '../services/ImagesService.js';
-import { onMounted } from 'vue';
+import { computed, onMounted } from 'vue';
+import { AppState } from '../AppState.js';
 
 export default {
   setup() {
@@ -23,7 +31,7 @@ export default {
       }
     }
     return {
-
+      images: computed(() => AppState.images)
     }
   }
 }
