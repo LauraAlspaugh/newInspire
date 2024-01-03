@@ -43,6 +43,15 @@ export default {
         Pop.error(error)
       }
     }
+    async function createToDo() {
+      try {
+        await to
+      } catch (error) {
+        logger.error(error)
+        Pop.error(error)
+
+      }
+    }
     function myTimer() {
       const date = new Date();
       document.getElementById("demo").innerHTML = date.toLocaleTimeString();
