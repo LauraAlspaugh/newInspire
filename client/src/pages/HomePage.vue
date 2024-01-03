@@ -17,6 +17,7 @@ import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { imagesService } from '../services/ImagesService.js';
 import { quotesService } from '../services/QuotesService.js';
+import { toDosService } from '../services/ToDosService.js';
 import { computed, onMounted } from 'vue';
 import { AppState } from '../AppState.js';
 
@@ -43,15 +44,6 @@ export default {
         Pop.error(error)
       }
     }
-    async function createToDo() {
-      try {
-        await to
-      } catch (error) {
-        logger.error(error)
-        Pop.error(error)
-
-      }
-    }
     function myTimer() {
       const date = new Date();
       document.getElementById("demo").innerHTML = date.toLocaleTimeString();
@@ -59,7 +51,16 @@ export default {
     setInterval(myTimer, 1000);
     return {
       images: computed(() => AppState.images),
-      quotes: computed(() => AppState.quotes)
+      quotes: computed(() => AppState.quotes),
+      async createToDo() {
+        try {
+          await toDosService.createToDo()
+        } catch (error) {
+          logger.error(error)
+          Pop.error(error)
+
+        }
+      }
     }
   }
 }
