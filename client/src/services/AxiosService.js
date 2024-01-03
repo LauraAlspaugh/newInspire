@@ -8,7 +8,7 @@ export const api = Axios.create({
 })
 export const bcwSandbox = Axios.create({
   baseURL: 'https://sandbox.codeworksacademy.com/',
-  timeout: 8000,
+  timeout: 4000,
   params: {
     domain: 'codeworksclassroom.auth0.com',
     audience: 'https://codeworksclassroom.com',
