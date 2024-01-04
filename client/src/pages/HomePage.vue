@@ -13,10 +13,10 @@
             <textarea v-model="editable.description" text-break type="text" class="form-control" id="description" rows="2"
               maxlength="1000" required placeholder="Description..."></textarea>
           </div>
-          <div class="mb-3">
+          <!-- <div class="mb-3">
             <label class="me-2" for="completed">Completed</label>
             <input v-model="editable.completed" type="checkbox" class="form-check-input" id="completed">
-          </div>
+          </div> -->
 
           <button type="submit" class="btn btn-outline-dark">Submit</button>
         </form>
@@ -26,7 +26,11 @@
     <section class="row">
       <div v-for="toDo in toDos" :key="toDo.id" class="col-12">
 
-        <p>{{ toDo.description }}</p>
+        <span>
+          {{ toDo.description }}
+          <input type="checkbox" class="form-check-input" id="completed">
+          <i class="mdi mdi-close fs-5"></i>
+        </span>
       </div>
     </section>
   </div>

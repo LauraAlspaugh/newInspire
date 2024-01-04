@@ -16,9 +16,11 @@ CREATE TABLE
         createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
         updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
         description VARCHAR(1000) NOT NULL,
-        completed BOOLEAN NOT NULL DEFAULT false,
+        completed BOOLEAN DEFAULT false,
         creatorId CHAR(255) NOT NULL,
         FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
     ) default charset utf8 COMMENT '';
 
 SELECT * FROM todos
+
+DROP TABLE todos
