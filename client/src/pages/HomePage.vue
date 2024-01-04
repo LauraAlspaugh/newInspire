@@ -6,6 +6,7 @@
         <img class="img-fluid" :src="images.imgUrl" alt="image url">
         <p class="author-title fs-4 text-light"> Image by: {{ images.author }}</p>
         <p class="content-title fs-4 text-light"> {{ quotes.content }}</p>
+        <p class="quote-author fs-5 text-light">- {{ quotes.author }}</p>
         <p class="fs-1 text-white text-center timer-content" id="demo"></p>
         <form @submit.prevent="createToDo()">
           <div class="mb-3">
@@ -122,10 +123,24 @@ img {
 
 }
 
+.quote-author {
+  position: absolute;
+  top: 140px;
+  left: 100px;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.content-title:hover+.quote-author {
+  opacity: 1;
+  visibility: visible;
+}
+
 .content-title {
   position: absolute;
-  top: 130px;
+  top: 110px;
   left: 80px;
+  cursor: help;
 }
 
 .timer-content {
