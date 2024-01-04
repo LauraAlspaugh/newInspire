@@ -7,6 +7,16 @@
         <p class="author-title fs-4 text-light"> Image by: {{ images.author }}</p>
         <p class="content-title fs-4 text-light"> {{ quotes.content }}</p>
         <p class="fs-1 text-white text-center timer-content" id="demo"></p>
+        <form @submit.prevent="createToDo()">
+          <div class="mb-3">
+            <label for="description" class="form-label"></label>
+            <textarea v-model="editable.description" text-break type="text" class="form-control" id="description" rows="2"
+              maxlength="1000" required placeholder="Description..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-outline-dark">Submit</button>
+        </form>
+        <p>{{ toDos.description }}</p>
       </div>
     </section>
   </div>
@@ -18,11 +28,12 @@ import Pop from '../utils/Pop.js';
 import { imagesService } from '../services/ImagesService.js';
 import { quotesService } from '../services/QuotesService.js';
 import { toDosService } from '../services/ToDosService.js';
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { AppState } from '../AppState.js';
 
 export default {
   setup() {
+    const editable = ref({})
     onMounted(() => {
       getImages()
       getQuotes()
@@ -50,11 +61,16 @@ export default {
     }
     setInterval(myTimer, 1000);
     return {
+      editable,
       images: computed(() => AppState.images),
       quotes: computed(() => AppState.quotes),
+      toDos: computed(() => AppState.toDos),
       async createToDo() {
         try {
-          await toDosService.createToDo()
+          const toDoData = editable.value
+          await toDosService.createToDo(toDoData)
+          Pop.success('To Do Created!')
+          editable.value = {}
         } catch (error) {
           logger.error(error)
           Pop.error(error)
