@@ -1,3 +1,5 @@
+
+
 namespace newInspire.Services;
 public class ToDosService
 {
@@ -6,5 +8,17 @@ public class ToDosService
     public ToDosService(ToDosRepository toDosRepository)
     {
         _toDosRepository = toDosRepository;
+    }
+
+    internal ToDo CreateToDo(ToDo toDoData)
+    {
+        ToDo toDo = _toDosRepository.CreateToDo(toDoData);
+        return toDo;
+    }
+
+    internal List<ToDo> GetToDos()
+    {
+        List<ToDo> toDos = _toDosRepository.GetToDos();
+        return toDos;
     }
 }

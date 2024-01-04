@@ -13,10 +13,20 @@
             <textarea v-model="editable.description" text-break type="text" class="form-control" id="description" rows="2"
               maxlength="1000" required placeholder="Description..."></textarea>
           </div>
+          <div class="mb-3">
+            <label class="me-2" for="completed">Completed</label>
+            <input v-model="editable.completed" type="checkbox" class="form-check-input" id="completed">
+          </div>
 
           <button type="submit" class="btn btn-outline-dark">Submit</button>
         </form>
-        <p>{{ toDos.description }}</p>
+
+      </div>
+    </section>
+    <section class="row">
+      <div v-for="toDo in toDos" :key="toDo.id" class="col-12">
+
+        <p>{{ toDo.description }}</p>
       </div>
     </section>
   </div>
@@ -37,6 +47,7 @@ export default {
     onMounted(() => {
       getImages()
       getQuotes()
+      getToDos()
     })
     async function getImages() {
       try {
@@ -53,6 +64,15 @@ export default {
       } catch (error) {
         logger.error(error)
         Pop.error(error)
+      }
+    }
+    async function getToDos() {
+      try {
+        await toDosService.getToDos()
+      } catch (error) {
+        logger.error(error)
+        Pop.error(error)
+
       }
     }
     function myTimer() {
