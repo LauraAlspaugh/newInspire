@@ -4,10 +4,10 @@
       <div class="col-12 p-0">
 
         <img class="img-fluid" :src="images.imgUrl" alt="image url">
-        <p class="author-title fs-4 text-light"> Image by: {{ images.author }}</p>
-        <p class="content-title fs-4 text-light"> {{ quotes.content }}</p>
+        <!-- <p class="author-title fs-4 text-light"> Image by: {{ images.author }}</p> -->
+        <p class="content-title fs-3 text-light"> {{ quotes.content }}</p>
         <p class="quote-author fs-5 text-light">- {{ quotes.author }}</p>
-        <p class="fs-1 text-white text-center timer-content" id="demo"></p>
+        <p class="text-white text-center timer-content" id="demo"></p>
       </div>
     </section>
     <section class="row">
@@ -17,13 +17,14 @@
             <label for="description" class="form-label"></label>
             <textarea v-model="editable.description" text-break type="text" class="form-control" id="description" rows="2"
               maxlength="1000" required placeholder="Description..."></textarea>
+            <button role="button" type="submit" class="btn btn-outline-dark bg-light m-2"><i
+                class="mdi mdi-plus"></i></button>
           </div>
           <!-- <div class="mb-3">
             <label class="me-2" for="completed">Completed</label>
             <input v-model="editable.completed" type="checkbox" class="form-check-input" id="completed">
           </div> -->
 
-          <button role="button" type="submit" class="btn btn-outline-dark">Add</button>
         </form>
 
       </div>
@@ -143,10 +144,11 @@ img {
 
 .quote-author {
   position: absolute;
-  top: 140px;
-  left: 100px;
+  bottom: 50px;
+  left: 50%;
   opacity: 0;
   visibility: hidden;
+  font-family: 'Pinyon Script', cursive;
 }
 
 .content-title:hover+.quote-author {
@@ -156,15 +158,18 @@ img {
 
 .content-title {
   position: absolute;
-  top: 110px;
-  left: 80px;
+  bottom: 80px;
+  left: 15%;
   cursor: help;
+  font-family: 'Pinyon Script', cursive;
 }
 
 .timer-content {
   position: absolute;
-  bottom: 80px;
+  top: 110px;
   left: 600px;
+  font-size: 60px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .todo-section {
@@ -174,7 +179,8 @@ img {
 
 .todo-list {
   position: absolute;
-  bottom: 200px;
+  // bottom: 200px;
+  top: 320px;
   border-radius: 7px;
   width: 33%;
   padding: 2px;

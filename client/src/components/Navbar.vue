@@ -69,7 +69,8 @@ a:hover {
 }
 
 .photo-title {
-  font-family: 'Pinyon Script', cursive;
+  /* font-family: 'Pinyon Script', cursive; */
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .navbar-nav .router-link-exact-active {
