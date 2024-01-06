@@ -18,7 +18,8 @@ import Navbar from './components/Navbar.vue'
 export default {
   setup() {
     return {
-      appState: computed(() => AppState)
+      appState: computed(() => AppState),
+      images: computed(() => `url('${AppState.images}'')`)
     }
   },
   components: { Navbar }
@@ -37,5 +38,9 @@ footer {
   place-content: center;
   height: 32px;
   background-color: #BFC9CA;
+}
+
+body {
+  background-image: v-bind(images);
 }
 </style>

@@ -8,8 +8,12 @@
         <p class="content-title fs-4 text-light"> {{ quotes.content }}</p>
         <p class="quote-author fs-5 text-light">- {{ quotes.author }}</p>
         <p class="fs-1 text-white text-center timer-content" id="demo"></p>
+      </div>
+    </section>
+    <section class="row">
+      <div class="todo-section">
         <form @submit.prevent="createToDo()">
-          <div class="mb-3">
+          <div class="mb-3 col-4 d-flex ">
             <label for="description" class="form-label"></label>
             <textarea v-model="editable.description" text-break type="text" class="form-control" id="description" rows="2"
               maxlength="1000" required placeholder="Description..."></textarea>
@@ -19,15 +23,15 @@
             <input v-model="editable.completed" type="checkbox" class="form-check-input" id="completed">
           </div> -->
 
-          <button type="submit" class="btn btn-outline-dark">Submit</button>
+          <button role="button" type="submit" class="btn btn-outline-dark">Add</button>
         </form>
 
       </div>
     </section>
-    <section class="row">
-      <div v-for="toDo in toDos" :key="toDo.id" class="col-12">
+    <section class="row todo-list bg-light">
+      <div v-for=" toDo  in  toDos " :key="toDo.id" class="col-12">
 
-        <span>
+        <span class="">
           {{ toDo.description }}
           <input type="checkbox" class="form-check-input" id="completed">
           <i @click="destroyToDo(toDo.id)" class="mdi mdi-close fs-5"></i>
@@ -56,6 +60,7 @@ export default {
     })
     async function getImages() {
       try {
+        // document.body.style.backgroundImage = `url(${AppState.images?.imgUrl})`
         await imagesService.getImages()
       } catch (error) {
         logger.error(error)
@@ -160,5 +165,20 @@ img {
   position: absolute;
   bottom: 80px;
   left: 600px;
+}
+
+.todo-section {
+  position: absolute;
+  bottom: 400px;
+}
+
+.todo-list {
+  position: absolute;
+  bottom: 200px;
+  border-radius: 7px;
+  width: 33%;
+  padding: 2px;
+  margin-left: 2px;
+
 }
 </style>
