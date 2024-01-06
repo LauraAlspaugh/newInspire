@@ -16,5 +16,10 @@ class ToDosService {
         logger.log('getting todos', res.data)
         AppState.toDos = res.data.map(pojo => new ToDo(pojo))
     }
+    async destroyToDo(toDoId){
+const res = await api.delete(`api/todos/${toDoId}`)
+logger.log('Destroying ToDo', res.data)
+AppState.toDos = AppState.toDos.filter((todo) => todo.id != toDoId)
+    }
 }
 export const toDosService = new ToDosService()

@@ -30,7 +30,7 @@
         <span>
           {{ toDo.description }}
           <input type="checkbox" class="form-check-input" id="completed">
-          <i class="mdi mdi-close fs-5"></i>
+          <i @click="destroyToDo(toDo.id)" class="mdi mdi-close fs-5"></i>
         </span>
       </div>
     </section>
@@ -96,6 +96,19 @@ export default {
           await toDosService.createToDo(toDoData)
           Pop.success('To Do Created!')
           editable.value = {}
+        } catch (error) {
+          logger.error(error)
+          Pop.error(error)
+
+        }
+      },
+      async destroyToDo(toDoId) {
+        try {
+          const wantstoDestroy = await Pop.confirm('Are you sure you want to destroy this ToDo? ');
+          if (!wantstoDestroy) {
+            return;
+          }
+          await toDosService.destroyToDo(toDoId);
         } catch (error) {
           logger.error(error)
           Pop.error(error)

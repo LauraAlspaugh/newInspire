@@ -1,5 +1,6 @@
 
 
+
 namespace newInspire.Services;
 public class ToDosService
 {
@@ -13,6 +14,23 @@ public class ToDosService
     internal ToDo CreateToDo(ToDo toDoData)
     {
         ToDo toDo = _toDosRepository.CreateToDo(toDoData);
+        return toDo;
+    }
+
+    internal string DestroyToDo(int toDoId, string userId)
+    {
+        ToDo toDo = GetToDoById(toDoId);
+        if (toDo.CreatorId != userId)
+        {
+            throw new Exception("Not your todo to destroy!");
+        }
+        _toDosRepository.DestroyToDo(toDoId);
+        return "It really is gone!";
+    }
+
+    internal ToDo GetToDoById(int toDoId)
+    {
+        ToDo toDo = _toDosRepository.GetToDoById(toDoId);
         return toDo;
     }
 

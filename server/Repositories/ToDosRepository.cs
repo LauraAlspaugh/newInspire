@@ -1,5 +1,7 @@
 
 
+
+
 namespace newInspire.Repositories;
 public class ToDosRepository
 {
@@ -28,6 +30,36 @@ public class ToDosRepository
             todo.Creator = account;
             return todo;
         }, toDoData).FirstOrDefault();
+        return toDo;
+    }
+
+    internal void DestroyToDo(int toDoId)
+    {
+        string sql = @"
+DELETE FROM todos WHERE id = @toDoId LIMIT 1;
+SELECT td.*,
+    acc.*
+    FROM todos td
+    JOIN accounts acc ON td.creatorId = acc.id
+    Where td.id = @toDoId;
+";
+        _db.Execute(sql, new { toDoId });
+    }
+
+    internal ToDo GetToDoById(int toDoId)
+    {
+        string sql = @"
+    SELECT td.*,
+    acc.*
+    FROM todos td
+    JOIN accounts acc ON td.creatorId = acc.id
+    Where td.id = @toDoId;
+    ";
+        ToDo toDo = _db.Query<ToDo, Account, ToDo>(sql, (todo, account) =>
+        {
+            todo.Creator = account;
+            return todo;
+        }, new { toDoId }).FirstOrDefault();
         return toDo;
     }
 

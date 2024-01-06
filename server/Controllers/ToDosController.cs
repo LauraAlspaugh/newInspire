@@ -43,4 +43,36 @@ public class ToDosController : ControllerBase
             return BadRequest(error.Message);
         }
     }
+    [Authorize]
+    [HttpDelete("{toDoId}")]
+    public async Task<ActionResult<string>> DestroyToDo(int toDoId)
+    {
+        try
+        {
+            Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+            string userId = userInfo.Id;
+            string message = _toDosService.DestroyToDo(toDoId, userId);
+            return Ok(message);
+        }
+        catch (Exception error)
+        {
+
+            return BadRequest(error.Message);
+        }
+    }
+    [HttpGet("{toDoId}")]
+    public ActionResult<ToDo> GetToDoById(int toDoId)
+    {
+        try
+        {
+            ToDo toDo = _toDosService.GetToDoById(toDoId);
+            return Ok(toDo);
+        }
+        catch (Exception error)
+        {
+
+            return BadRequest(error.Message);
+        }
+
+    }
 }
