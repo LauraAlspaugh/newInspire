@@ -39,4 +39,16 @@ public class ToDosService
         List<ToDo> toDos = _toDosRepository.GetToDos();
         return toDos;
     }
+
+    internal ToDo UpdateToDo(int toDoId, string id, ToDo toDoData)
+    {
+        ToDo toDo = GetToDoById(toDoId);
+        if (toDo.CreatorId != id)
+        {
+            throw new Exception("Not your todo to update!");
+        }
+        toDo.Completed = toDoData.Completed ?? toDo.Completed;
+        _toDosRepository.UpdateToDo(toDo);
+        return toDo;
+    }
 }

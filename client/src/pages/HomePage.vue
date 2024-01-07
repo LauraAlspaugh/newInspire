@@ -34,7 +34,8 @@
 
         <span class="">
           {{ toDo.description }}
-          <input type="checkbox" class="form-check-input" id="completed">
+          <input @click="updateToDo(toDo.id)" v-model="editable.completed" type="checkbox" class="form-check-input"
+            id="completed">
           <i @click="destroyToDo(toDo.id)" class="mdi mdi-close fs-5"></i>
         </span>
       </div>
@@ -54,6 +55,7 @@ import { AppState } from '../AppState.js';
 export default {
   setup() {
     const editable = ref({})
+    // const editable2 = ref({})
     onMounted(() => {
       getImages()
       getQuotes()
@@ -119,6 +121,15 @@ export default {
           logger.error(error)
           Pop.error(error)
 
+        }
+      },
+      async updateToDo(toDoId) {
+        try {
+          const toDoData = editable.value
+          await toDosService.updateToDo(toDoId, toDoData);
+        } catch (error) {
+          logger.error(error)
+          Pop.error(error)
         }
       }
     }

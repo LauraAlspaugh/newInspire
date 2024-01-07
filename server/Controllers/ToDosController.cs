@@ -75,4 +75,20 @@ public class ToDosController : ControllerBase
         }
 
     }
+    [Authorize]
+    [HttpPut("{toDoId}")]
+    public async Task<ActionResult<ToDo>> UpdateToDo(int toDoId, [FromBody] ToDo toDoData)
+    {
+        try
+        {
+            Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+            ToDo toDo = _toDosService.UpdateToDo(toDoId, userInfo.Id, toDoData);
+            return Ok(toDo);
+        }
+        catch (Exception error)
+        {
+
+            return BadRequest(error.Message);
+        }
+    }
 }

@@ -2,6 +2,7 @@
 
 
 
+
 namespace newInspire.Repositories;
 public class ToDosRepository
 {
@@ -78,5 +79,29 @@ SELECT td.*,
             return todo;
         }).ToList();
         return toDos;
+    }
+
+    internal ToDo UpdateToDo(ToDo toDo)
+    {
+        string sql = @"
+        UPDATE todos
+        SET 
+        completed = @Completed
+        WHERE id = @Id;
+
+        SELECT 
+        td.*,
+        acc.*
+        FROM todos td
+        JOIN accounts acc ON td.creatorId = acc.id
+        WHERE td.id = @Id;
+        ";
+
+        ToDo newToDo = _db.Query<ToDo, Account, ToDo>(sql, (todo, account) =>
+        {
+            todo.Creator = account;
+            return todo;
+        }, toDo).FirstOrDefault();
+        return newToDo;
     }
 }

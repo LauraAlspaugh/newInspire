@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-sm navbar-dark nav-color px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <i class="mdi mdi-snowflake fs-1 photo-title "><span class="plan-title fs-1 p-0 text-white"
+        <i class="mdi mdi-forest-outline fs-1 photo-title "><span class="plan-title fs-1 p-0 m-2 text-white"
             title="back to homepage">Inspire
           </span></i>
       </div>
