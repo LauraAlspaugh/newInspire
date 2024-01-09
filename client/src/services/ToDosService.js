@@ -24,11 +24,11 @@ AppState.toDos = AppState.toDos.filter((todo) => todo.id != toDoId)
     async updateToDo(toDoId, toDoData){
 const res = await api.put(`api/todos/${toDoId}`, toDoData)
 logger.log('editing todo!', res.data)
-const newToDo = new ToDo(res.data)
-        const toDoIndex = AppState.toDos.findIndex(toDo => toDo.id == newToDo.id)
-        if (toDoIndex == -1) {
-            throw new Error('no toDo with this id')
-        } AppState.toDos.splice(toDoIndex, 1, newToDo)
+// const newToDo = new ToDo(res.data)
+        // const toDoIndex = AppState.toDos.findIndex(toDo => toDo.id == newToDo.id)
+        // if (toDoIndex == -1) {
+        //     throw new Error('no toDo with this id')
+        // } AppState.toDos.splice(toDoIndex, 1, newToDo)
 
     }
 }

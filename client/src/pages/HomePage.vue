@@ -30,11 +30,15 @@
       </div>
     </section>
     <section class="row todo-list bg-light">
-      <div v-for="  toDo   in   toDos  " :key="toDo.id" class="col-12">
+
+      <p class="todo-length fs-4 text-center">{{ toDos.length }} things to do</p>
+      <div v-for="  toDo   in   toDos  " :key="toDo.id" class="col-12 text-center">
 
         <span class="">
           {{ toDo.description }}
-          <input @click="updateToDo(toDo.id)" v-model="editable.completed" type="checkbox" class="form-check-input">
+          <input v-if="toDo" @change="updateToDo(toDo.id)" v-model="toDo.completed" type="checkbox"
+            class="form-check-input" :checked="toDo.completed">
+
           <i @click="destroyToDo(toDo.id)" class="mdi mdi-close fs-5"></i>
         </span>
       </div>
@@ -196,5 +200,10 @@ img {
   padding: 2px;
   margin-left: 2px;
 
+}
+
+.todo-length {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  border-bottom: #BFC9CA solid 2px;
 }
 </style>
