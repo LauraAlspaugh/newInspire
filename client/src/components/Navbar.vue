@@ -13,6 +13,15 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
+        <p class="fs-1 text-white d-flex p-0 m-2 weather-title"> {{ (weather.weather * (9 / 5) +
+          32).toFixed(0)
+        }}<i class="mdi mdi-temperature-fahrenheit"></i>
+        </p>
+        <div class="col-12 weather-info">
+          <p class="">{{ weather.name }}</p>
+          <p class="">{{ weather.wind }}</p>
+          <p>{{ weather.humidity }}</p>
+        </div>
         <li>
           <!-- <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
             About
@@ -30,9 +39,13 @@
 </template>
 
 <script>
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { loadState, saveState } from '../utils/Store.js';
 import Login from './Login.vue';
+import { imagesService } from '../services/ImagesService.js';
+import { logger } from '../utils/Logger.js';
+import Pop from '../utils/Pop.js';
+import { AppState } from '../AppState.js';
 export default {
   setup() {
 
@@ -40,7 +53,17 @@ export default {
 
     onMounted(() => {
       document.documentElement.setAttribute('data-bs-theme', theme.value)
+      getWeather()
     })
+    async function getWeather() {
+      try {
+        await imagesService.getWeather()
+      } catch (error) {
+        logger.error(error)
+        Pop.error(error)
+
+      }
+    }
 
     return {
       theme,
@@ -48,7 +71,8 @@ export default {
         theme.value = theme.value == 'light' ? 'dark' : 'light'
         document.documentElement.setAttribute('data-bs-theme', theme.value)
         saveState('theme', theme.value)
-      }
+      },
+      weather: computed(() => AppState.weather)
     }
   },
   components: { Login }
@@ -62,6 +86,22 @@ a:hover {
 
 .nav-link {
   text-transform: uppercase;
+}
+
+.weather-title:hover+.weather-info {
+  opacity: 1;
+  visibility: visible;
+}
+
+.weather-title {
+  cursor: help;
+}
+
+.weather-info {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  font-family: 'Pinyon Script', cursive;
 }
 
 .nav-color {

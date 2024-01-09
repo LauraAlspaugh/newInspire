@@ -43,6 +43,7 @@
         </span>
       </div>
     </section>
+
   </div>
 </template>
 
@@ -63,6 +64,7 @@ export default {
       getImages()
       getQuotes()
       getToDos()
+      getWeather()
     })
     async function getImages() {
       try {
@@ -91,6 +93,15 @@ export default {
 
       }
     }
+    async function getWeather() {
+      try {
+        await imagesService.getWeather()
+      } catch (error) {
+        logger.error(error)
+        Pop.error(error)
+
+      }
+    }
     function myTimer() {
       const date = new Date();
       document.getElementById("demo").innerHTML = date.toLocaleTimeString();
@@ -101,6 +112,7 @@ export default {
       images: computed(() => AppState.images),
       quotes: computed(() => AppState.quotes),
       toDos: computed(() => AppState.toDos),
+      weather: computed(() => AppState.weather),
       async createToDo() {
         try {
           const toDoData = editable.value
