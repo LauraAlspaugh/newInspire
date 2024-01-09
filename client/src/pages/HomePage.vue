@@ -16,7 +16,7 @@
           <div class="mb-3 col-4 d-flex ">
             <label for="description" class="form-label"></label>
             <textarea v-model="editable.description" text-break type="text" class="form-control" id="description" rows="2"
-              maxlength="1000" required placeholder="Description..."></textarea>
+              maxlength="1000" required placeholder="Create a ToDo..."></textarea>
             <button role="button" type="submit" class="btn btn-outline-dark bg-light m-2"><i
                 class="mdi mdi-plus"></i></button>
           </div>
@@ -30,12 +30,11 @@
       </div>
     </section>
     <section class="row todo-list bg-light">
-      <div v-for=" toDo  in  toDos " :key="toDo.id" class="col-12">
+      <div v-for="  toDo   in   toDos  " :key="toDo.id" class="col-12">
 
         <span class="">
           {{ toDo.description }}
-          <input @click="updateToDo(toDo.id)" v-model="editable.completed" type="checkbox" class="form-check-input"
-            id="completed">
+          <input @click="updateToDo(toDo.id)" v-model="editable.completed" type="checkbox" class="form-check-input">
           <i @click="destroyToDo(toDo.id)" class="mdi mdi-close fs-5"></i>
         </span>
       </div>

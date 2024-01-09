@@ -66,6 +66,10 @@ a:hover {
 
 .nav-color {
   background-color: #BFC9CA;
+  /* background: rgba(138, 192, 199, 0.62);
+  backdrop-filter: blur(3.6px);
+  opacity: 6px; */
+
 }
 
 .photo-title {
